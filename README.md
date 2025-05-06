@@ -54,8 +54,6 @@ export default interface IAdopterService {
 - CRUD completo para as rotas: /adopters, /shelters e /pets
 - Middleware para tratamento de erros
 - Utilitário errorHandler
-
-### Em desenvolvimento:
 - Criptografia de senha com salt e hash
 - Autenticação com JWT
 - Validações com Yup
