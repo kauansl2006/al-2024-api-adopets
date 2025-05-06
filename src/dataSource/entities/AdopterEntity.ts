@@ -32,10 +32,7 @@ export default class AdopterEntity {
   public birthDate!: Date;
 
   @Column("varchar")
-  public saltPassword!: string;
-
-  @Column("varchar")
-  public hashPassword!: string;
+  public passwordHash!: string;
 
   @OneToOne(() => AddressEntity, {
     nullable: true,
@@ -64,8 +61,7 @@ export default class AdopterEntity {
     email: string,
     phone: string,
     birthDate: Date,
-    saltPassword: string,
-    hashPassword: string,
+    passwordHash: string,
     address: AddressEntity,
   ) {
     this.name = name;
@@ -73,8 +69,7 @@ export default class AdopterEntity {
     this.email = email;
     this.phone = phone;
     this.birthDate = birthDate;
-    this.saltPassword = saltPassword;
-    this.hashPassword = hashPassword;
+    this.passwordHash = passwordHash;
     this.address = address;
   }
 }

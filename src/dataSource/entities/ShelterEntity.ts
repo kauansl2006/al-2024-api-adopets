@@ -29,10 +29,7 @@ export default class ShelterEntity {
   public phone!: string;
 
   @Column("varchar")
-  public saltPassword!: string;
-
-  @Column("varchar")
-  public hashPassword!: string;
+  public passwordHash!: string;
 
   @OneToOne(() => AddressEntity, {
     nullable: true,
@@ -60,16 +57,14 @@ export default class ShelterEntity {
     photo: string,
     email: string,
     phone: string,
-    saltPassword: string,
-    hashPassword: string,
+    passwordHash: string,
     address: AddressEntity,
   ) {
     this.name = name;
     this.photo = photo;
     this.email = email;
     this.phone = phone;
-    this.saltPassword = saltPassword;
-    this.hashPassword = hashPassword;
+    this.passwordHash = passwordHash;
     this.address = address;
   }
 }

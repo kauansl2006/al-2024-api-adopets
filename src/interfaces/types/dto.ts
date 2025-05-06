@@ -49,3 +49,8 @@ export type UpdateShelterDto = Omit<
 > & {
   id: number;
 };
+
+export type CreateAuthDto = {
+  email: string;
+  password: string;
+};

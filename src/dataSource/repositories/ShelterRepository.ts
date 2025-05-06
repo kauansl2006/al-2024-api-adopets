@@ -6,6 +6,7 @@ import {
 } from "../../interfaces/types/dto.js";
 import PetEntity from "../entities/PetEntity.js";
 import ShelterEntity from "../entities/ShelterEntity.js";
+import { encryptPassword } from "../../utils/encryptPassword.js";
 
 export default class ShelterRepository implements IShelterRepository {
   private shelterRepository: Repository<ShelterEntity>;
@@ -25,13 +26,17 @@ export default class ShelterRepository implements IShelterRepository {
     return await this.shelterRepository.findOneBy({ id: shelterId });
   }
   async createShelter(dto: CreateShelterDto): Promise<ShelterEntity> {
+    const saltRounds = 10;
+    const password = dto.password;
+
+    const hash = encryptPassword(password, saltRounds);
+
     const createdShelter: ShelterEntity = this.shelterRepository.create({
       name: dto.name,
       photo: dto.photo,
       email: dto.email,
       phone: dto.phone,
-      saltPassword: dto.saltPassword,
-      hashPassword: dto.hashPassword,
+      passwordHash: hash,
       address: {
         street: dto.address.street,
         neighborhood: dto.address.neighborhood,

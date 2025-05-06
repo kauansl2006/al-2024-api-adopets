@@ -4,6 +4,8 @@ import { Router } from "express";
 import shelterFactory from "../factories/shelterFactory .js";
 import ShelterController from "../controllers/ShelterController.js";
 
+import { shelterValidationMiddleware } from "../middlewares/validations/shelterValidationMiddleware.js";
+
 const router: Router = Router();
 
 const shelterController: ShelterController = shelterFactory();
@@ -11,7 +13,7 @@ const shelterController: ShelterController = shelterFactory();
 router
   .get("/", (req, res) => shelterController.findAllShelters(req,res))
   .get("/:shelterId", (req, res) => shelterController.findShelterById(req,res))
-  .post("/", (req, res) => shelterController.createShelter(req,res))
+  .post("/", shelterValidationMiddleware, (req, res) => shelterController.createShelter(req,res))
   .put("/:shelterId", (req, res) => shelterController.updateShelter(req,res))
   .delete("/:shelterId",(req, res) => shelterController.deleteShelter(req,res));
 

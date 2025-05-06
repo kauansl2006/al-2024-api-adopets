@@ -8,6 +8,7 @@ import {
   UpdateAdopterDto,
 } from "../../interfaces/types/dto.js";
 import PetEntity from "../entities/PetEntity.js";
+import { encryptPassword } from "../../utils/encryptPassword.js";
 
 export default class AdopterRepository implements IAdopterRepository {
   private adopterRepository: Repository<AdopterEntity>;
@@ -27,14 +28,18 @@ export default class AdopterRepository implements IAdopterRepository {
     return await this.adopterRepository.findOneBy({ id: adopterId });
   }
   async createAdopter(dto: CreateAdopterDto): Promise<AdopterEntity> {
+    const saltRounds = 10;
+    const password = dto.password;
+
+    const hash = encryptPassword(password, saltRounds);
+
     const createdAdopter: AdopterEntity = this.adopterRepository.create({
       name: dto.name,
       photo: dto.photo,
       email: dto.email,
       phone: dto.phone,
       birthDate: dto.birthDate,
-      saltPassword: dto.saltPassword,
-      hashPassword: dto.hashPassword,
+      passwordHash: hash,
       address: {
         street: dto.address.street,
         neighborhood: dto.address.neighborhood,

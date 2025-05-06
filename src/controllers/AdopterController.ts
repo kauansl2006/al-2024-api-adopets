@@ -58,8 +58,7 @@ export default class AdopterController implements IAdopterController {
       email: requestBody.email,
       phone: requestBody.phone,
       birthDate: requestBody.birthDate,
-      saltPassword: requestBody.saltPassword,
-      hashPassword: requestBody.hashPassword,
+      password: requestBody.password,
       address: {
         street: requestBody.address.street,
         neighborhood: requestBody.address.neighborhood,

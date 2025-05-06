@@ -44,8 +44,7 @@ export default class ShelterController implements IShelterController {
       photo: requestBody.photo,
       email: requestBody.email,
       phone: requestBody.phone,
-      saltPassword: requestBody.saltPassword,
-      hashPassword: requestBody.hashPassword,
+      password: requestBody.password,
       address: {
         street: requestBody.address.street,
         neighborhood: requestBody.address.neighborhood,
